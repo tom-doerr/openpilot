@@ -33,6 +33,15 @@ int main(int argc, char **argv) {
   signal(SIGTERM, (sighandler_t)set_do_exit);
 
   PubMaster pm({"driverState"});
+  SubMaster sm({"model"});
+
+  bool modeld_alive = false;
+  while (!modeld_alive) {
+    printf("waiting for modeld startup... \n");
+    usleep(100000);
+    sm.update(0);
+    modeld_alive = sm.updated("model");
+  }
 
   // init the models
   DMonitoringModelState dmonitoringmodel;

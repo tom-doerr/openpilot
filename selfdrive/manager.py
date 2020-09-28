@@ -238,6 +238,7 @@ car_started_processes = [
   'calibrationd',
   'paramsd',
   'camerad',
+  'modeld',
   'proclogd',
   'locationd',
   'clocksd',
@@ -271,7 +272,6 @@ if ANDROID:
 
 # starting dmonitoringmodeld when modeld is initializing can sometimes \
 # result in a weird snpe state where dmon constantly uses more cpu than normal.
-car_started_processes += ['modeld']
 
 def register_managed_process(name, desc, car_started=False):
   global managed_processes, car_started_processes, persistent_processes
